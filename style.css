@@ -5,6 +5,11 @@
   font-family: "Arial", "Helvetica", sans-serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+
 :root {
   color-scheme: light;
   --cream: #f6f2e8;
@@ -14,6 +19,29 @@
   --green-soft: #e2f0d3;
   --text: #1d1d1d;
 }
+
+
+/* LINKS DA INTRODUÇÃO */
+.intro-list li {
+  background: var(--green-soft);
+  padding: 0; /* importante */
+  border-radius: 16px;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.intro-list a {
+  display: block;
+  padding: 14px 18px;
+  color: var(--green-dark);
+  text-decoration: none;
+}
+
+.intro-list li:hover {
+  background: var(--cream);
+  transform: translateY(-10px);
+  cursor: pointer;
+}
+
 
 /* BOTÃO VOLTAR AO TOPO */
 .back-intro {
@@ -48,7 +76,6 @@ body {
 .page {
   display: flex;
   flex-direction: column;
-  gap: 32px;
   padding-bottom: 72px;
 }
 
