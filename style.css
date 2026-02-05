@@ -146,9 +146,6 @@ ul {
   box-shadow: 0 18px 40px rgba(10, 91, 51, 0.08);
 }
 
-.sticky.section-content {
-  max-width: none;
-}
 
 .gallery {
   position: relative;
