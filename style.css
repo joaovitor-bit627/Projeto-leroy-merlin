@@ -1,0 +1,89 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background: #e9f5d8;
+  color: #000;
+}
+
+.section {
+  min-height: 100vh;
+  padding: 80px;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 4rem;
+}
+
+.hero p {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+ul {
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* STICKY SECTION */
+.sticky-section {
+  height: 600vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.gallery {
+  position: relative;
+  height: 420px;
+}
+
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.photo.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+
+.end {
+  text-align: center;
+}
