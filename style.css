@@ -15,9 +15,33 @@
   --text: #1d1d1d;
 }
 
+.back-intro {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 1000;
+
+  background: var(--green);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Estado escondido */
+.back-intro.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+}
+
+
 body {
-  background: var(--cream);
-  color: var(--text);
+  background: #E4F2CE;
 }
 
 .page {
@@ -44,8 +68,8 @@ body {
   margin: 0 0vw;
   border-radius: 0px;
   min-height: 0vh;
-  background: linear-gradient(135deg, var(--green), var(--green-dark));
-  color: #fff;
+  background: linear-gradient(0deg, #00ff8038, #00733a4f);
+  color: #3B7312;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -101,11 +125,31 @@ ul {
   padding-left: 20px;
 }
 
+.intro-list a {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  padding: 14px 18px;
+  border-radius: 16px;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.intro-list a:hover {
+  background: var(--green-soft);
+  transform: translateY(-2px);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
 .intro-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px 24px;
-  list-style: none;
   padding-left: 0;
 }
 

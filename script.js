@@ -17,3 +17,20 @@ window.addEventListener('scroll', () => {
     photo.classList.toggle('active', i === index);
   });
 });
+
+
+const backIntro = document.getElementById("backIntro");
+const introSection = document.getElementById("intro");
+
+const observer = new IntersectionObserver(
+  ([entry]) => {
+    if (entry.isIntersecting) {
+      backIntro.classList.add("hidden");
+    } else {
+      backIntro.classList.remove("hidden");
+    }
+  },
+  { threshold: 0.4 }
+);
+
+observer.observe(introSection);
