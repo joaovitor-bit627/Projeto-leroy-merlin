@@ -1,5 +1,5 @@
 * {
-  margin: 0;
+  margin: -10px;
   padding: 0;
   box-sizing: border-box;
   font-family: "Arial", "Helvetica", sans-serif;
@@ -80,10 +80,6 @@ body {
 }
 
 .section {
-  padding: 72px 10vw;
-  background: var(--cream-strong);
-  border-radius: 32px;
-  margin: 0 6vw;
   box-shadow: 0 18px 40px rgba(10, 91, 51, 0.08);
 }
 
@@ -93,8 +89,6 @@ body {
 }
 
 .hero {
-  margin: 0 0vw;
-  border-radius: 0px;
   min-height: 0vh;
   background: linear-gradient(0deg, #00ff8038, #00733a4f);
   color: #3B7312;
