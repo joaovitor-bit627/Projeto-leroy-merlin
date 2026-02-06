@@ -3,11 +3,16 @@ const section = document.querySelector(".sticky-section");
 
 window.addEventListener("scroll", () => {
   const rect = section.getBoundingClientRect();
-  const scrollProgress =
-    (window.innerHeight - rect.top) /
-    (rect.height - window.innerHeight);
 
-  const progress = Math.min(Math.max(scrollProgress, 0), 1);
+  const start = 0;
+  const end = rect.height - window.innerHeight;
+
+  const current = Math.min(
+    Math.max(-rect.top, start),
+    end
+  );
+
+  const progress = current / end;
 
   const index = Math.min(
     photos.length - 1,
@@ -18,6 +23,7 @@ window.addEventListener("scroll", () => {
     img.classList.toggle("active", i === index);
   });
 });
+
 
 
 
