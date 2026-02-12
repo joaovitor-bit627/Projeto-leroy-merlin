@@ -267,11 +267,18 @@ ul {
 
   .sticky {
    position: relative;
-   height: auto;
+   height: 100%;
+   padding: 72px 4vw;
   }
 
   .sticky-section {
-   height: 1200vh;
+   height: auto;
+   margin: 0 4vw;
+  }
+
+  .gallery {
+    height: 300px;
+    margin-top: 24px;
   }
 
   .gallery-side {
