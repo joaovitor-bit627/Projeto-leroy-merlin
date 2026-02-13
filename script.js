@@ -4,29 +4,32 @@ const gallery = document.querySelector('.gallery');
 const sticky = document.querySelector('.sticky');
 const header = document.querySelector('.sticky .header');
 const text = document.querySelector('.sticky .text');
+const MOBILE_SCROLL_DELAY_RATIO = 0;
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
 
 function updateActivePhoto() {
   if (!section || photos.length === 0) return;
 
   const rect = section.getBoundingClientRect();
-  const end = Math.max(rect.height - window.innerHeight, 1);
-  let current = Math.min(Math.max(-rect.top, 0), end);
+  const sectionStartY = window.scrollY + rect.top;
+  const sectionHeight = section.offsetHeight || rect.height;
+  const end = Math.max(sectionHeight - window.innerHeight, 1);
+  const current = clamp(window.scrollY - sectionStartY, 0, end);
   let progress = current / end;
 
-  if (window.innerWidth <= 720) {
+  if (window.innerWidth <= 720 && gallery) {
     const stickyStyles = sticky ? window.getComputedStyle(sticky) : null;
-    const rowGap = stickyStyles
-      ? parseFloat(stickyStyles.rowGap || stickyStyles.gap || '0') || 0
+    const stickyTop = stickyStyles
+      ? parseFloat(stickyStyles.top || '0') || 0
       : 0;
-    const startOffset =
-      (header?.offsetHeight || 0) +
-      (text?.offsetHeight || 0) +
-      rowGap * 2;
-    const delayedStart = startOffset;
-    const mobileEnd = Math.max(end - delayedStart, 1);
-
-    current = Math.max(current - delayedStart, 0);
-    progress = Math.min(current / mobileEnd, 1);
+    const extraDelay = Math.round(window.innerHeight * MOBILE_SCROLL_DELAY_RATIO);
+    const startOffset = Math.max(-stickyTop, 0) + extraDelay;
+    const mobileRange = Math.max(end - startOffset, 1);
+    const mobileCurrent = clamp(current - startOffset, 0, mobileRange);
+    progress = mobileCurrent / mobileRange;
   }
 
   const index = Math.min(photos.length - 1, Math.floor(progress * photos.length));
@@ -38,8 +41,6 @@ function updateActivePhoto() {
 
 function setupSectionHeight() {
   if (!section || photos.length === 0) return;
-
-  let mobileOffset = 0;
 
   if (window.innerWidth <= 720 && gallery && sticky) {
     const stickyStyles = window.getComputedStyle(sticky);
@@ -55,16 +56,24 @@ function setupSectionHeight() {
     const galleryH = Math.max(140, Math.min(target, Math.floor(available)));
 
     gallery.style.height = `${galleryH}px`;
-    mobileOffset = headerH + textH + rowGap * 2;
-  }
+    // Start pinning when gallery reaches the center of the viewport.
+    const galleryCenterInSticky = gallery.offsetTop + galleryH / 2;
+    const desiredTop = Math.round(window.innerHeight / 2 - galleryCenterInSticky);
+    const minTop = -Math.round(window.innerHeight * 0.45);
+    const mobileTop = clamp(desiredTop, minTop, 0);
+    sticky.style.top = `${mobileTop}px`;
+    sticky.style.height = 'auto';
 
-  if (window.innerWidth <= 720) {
-    section.style.height = `${photos.length * window.innerHeight + mobileOffset}px`;
+    const extraDelay = Math.round(window.innerHeight * MOBILE_SCROLL_DELAY_RATIO);
+    const startOffset = Math.max(-mobileTop, 0) + extraDelay;
+    section.style.height = `${photos.length * window.innerHeight + startOffset}px`;
   } else {
     section.style.height = `${photos.length * window.innerHeight}px`;
+    if (sticky) {
+      sticky.style.top = '0';
+      sticky.style.height = '100vh';
+    }
   }
-
-  if (sticky) sticky.style.height = window.innerWidth <= 720 ? 'auto' : '100vh';
 
   if (gallery && window.innerWidth > 720) {
     const ratio = window.innerWidth <= 720 ? 0.48 : 0.6;
@@ -97,6 +106,3 @@ const observer = new IntersectionObserver(
 );
 
 observer.observe(introSection);
-
-
-
