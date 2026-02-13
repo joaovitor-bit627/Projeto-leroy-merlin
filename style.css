@@ -273,8 +273,9 @@ ul {
     top: 0;
     min-height: 130vh;
     height: auto;
-    gap: 16px;
-    padding: 20px 5vw;
+    align-content: start;
+    gap: 10px;
+    padding: 14px 5vw;
   }
 
   .header {
@@ -291,7 +292,7 @@ ul {
   .gallery {
     order: 3;
     position: relative;
-    height: 48vh;
+    height: 40vh;
     margin-top: 4px;
   }
 
