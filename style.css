@@ -285,7 +285,7 @@ ul {
     grid-template-columns: 1fr;
     position: sticky;
     top: 0;
-    min-height: 130vh;
+    min-height: 145vh;
     height: auto;
     align-content: start;
     gap: 10px;
