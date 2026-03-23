@@ -94,15 +94,18 @@ window.addEventListener("scroll", updateActivePhoto);
 const backIntro = document.getElementById("backIntro");
 const introSection = document.getElementById("intro");
 
-const observer = new IntersectionObserver(
-  ([entry]) => {
-    if (entry.isIntersecting) {
-      backIntro.classList.add("hidden");
-    } else {
-      backIntro.classList.remove("hidden");
-    }
-  },
-  { threshold: 0.4 }
-);
+function updateBackButtonVisibility() {
+  const scrollPos = window.scrollY;
+  const introTop = introSection.getBoundingClientRect().top + scrollPos;
+  const introBottom = introSection.offsetHeight + introTop;
+  
+  // Mostra o botão só DEPOIS de passar completamente pela introdução
+  if (scrollPos < introBottom) {
+    backIntro.classList.add("hidden");
+  } else {
+    backIntro.classList.remove("hidden");
+  }
+}
 
-observer.observe(introSection);
+window.addEventListener("scroll", updateBackButtonVisibility);
+updateBackButtonVisibility();

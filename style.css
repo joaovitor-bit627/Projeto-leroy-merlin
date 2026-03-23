@@ -350,3 +350,26 @@ ul {
   }
 
 }
+
+.progressao-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  .progressao-layout {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .progressao-layout > div {
+    flex: 1;
+  }
+
+  .progressao-layout img {
+    flex: 1;
+    max-width: 400px;
+  }
+}
