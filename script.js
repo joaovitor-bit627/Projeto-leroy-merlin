@@ -109,3 +109,21 @@ function updateBackButtonVisibility() {
 
 window.addEventListener("scroll", updateBackButtonVisibility);
 updateBackButtonVisibility();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("modal");
+  const abrirBtn = document.getElementById("abrirBtn");
+  const img = document.getElementById("imgModal");
+
+  abrirBtn.addEventListener("click", () => {
+    modal.classList.add("ativo");
+  });
+
+  modal.addEventListener("click", () => {
+    modal.classList.remove("ativo");
+  });
+
+  img.addEventListener("click", (e) => {
+    e.stopPropagation();
+  });
+});
