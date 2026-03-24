@@ -269,6 +269,19 @@ ul {
   transform: translate(-50%, -50%) scale(1);
 }
 
+.quem-sou-eu-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.quem-sou-eu-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 8px 18px rgba(10, 91, 51, 0.2);
+}
 
 .end {
   text-align: center;
@@ -405,6 +418,14 @@ ul {
   cursor: pointer;
 
   transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 /* hover igual */

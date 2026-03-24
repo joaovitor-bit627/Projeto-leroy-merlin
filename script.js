@@ -113,10 +113,26 @@ updateBackButtonVisibility();
 document.addEventListener("DOMContentLoaded", () => {
   const modal = document.getElementById("modal");
   const abrirBtn = document.getElementById("abrirBtn");
+  const quemSouEuButtons = document.querySelectorAll(".section#quem-sou-eu .btn-group .btn-card");
   const img = document.getElementById("imgModal");
 
+  const quemSouEuFotos = [
+    "assets/Familia.jpeg",
+    "assets/EuERenan.jpeg",
+    "assets/mais-uma-foto.jpeg",
+  ];
+
   abrirBtn.addEventListener("click", () => {
+    img.src = "assets/progressao.jfif";
     modal.classList.add("ativo");
+  });
+
+  quemSouEuButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      const src = button.dataset.quemSouEuFoto || quemSouEuFotos[index] || "assets/Familia.jpeg";
+      img.src = src;
+      modal.classList.add("ativo");
+    });
   });
 
   modal.addEventListener("click", () => {
